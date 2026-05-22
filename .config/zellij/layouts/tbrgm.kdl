@@ -1,0 +1,28 @@
+layout {
+    pane size=1 borderless=true {
+        plugin location="zellij:tab-bar"
+    }
+    pane split_direction="vertical" {
+        pane size="65%" {
+            name "claude"
+            cwd "/home/roger/.tbr_gm"
+            command "bash"
+            args "-c" "claude"
+        }
+        pane split_direction="horizontal" {
+            pane {
+                name "shell"
+                cwd "/home/roger/.tbr_gm"
+            }
+            pane {
+                name "logs"
+                cwd "/home/roger/.tbr_gm"
+                command "bash"
+                args "-c" "tail -f /home/roger/.tbr_gm/ingest.log"
+            }
+        }
+    }
+    pane size=2 borderless=true {
+        plugin location="zellij:status-bar"
+    }
+}
