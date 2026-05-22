@@ -1,0 +1,11 @@
+# Editor temp files
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Secrets — never track these
+*.env
+*secret*
+*token*
+*password*
