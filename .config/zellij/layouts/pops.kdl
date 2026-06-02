@@ -1,0 +1,28 @@
+layout {
+    pane size=1 borderless=true {
+        plugin location="zellij:tab-bar"
+    }
+    pane split_direction="vertical" {
+        pane size="65%" {
+            name "claude"
+            cwd "/home/roger/pops"
+            command "bash"
+            args "-c" "claude"
+        }
+        pane split_direction="horizontal" {
+            pane {
+                name "shell"
+                cwd "/home/roger/pops"
+            }
+            pane {
+                name "app · logs"
+                cwd "/home/roger/pops"
+                command "bash"
+                args "-c" "POPS_NATIVE=0 venv/bin/python app.py"
+            }
+        }
+    }
+    pane size=2 borderless=true {
+        plugin location="zellij:status-bar"
+    }
+}
