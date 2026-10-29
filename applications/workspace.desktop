@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Workspace (TBR GM + POPS)
+Comment=kitty + zellij + claude, TBR GM and POPS tabs
+Exec=/home/roger/.local/bin/workspace
+Icon=utilities-terminal
+Terminal=false
+Categories=Development;TerminalEmulator;

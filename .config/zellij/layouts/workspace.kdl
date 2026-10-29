@@ -1,0 +1,56 @@
+// Two-tab workspace: TBR GM + POPS. Launched by ~/dotfiles/bin/workspace.
+layout {
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        children
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+    tab name="TBR GM" focus=true {
+        pane split_direction="vertical" {
+            pane size="65%" {
+                name "claude"
+                cwd "/home/roger/.tbr_gm"
+                command "bash"
+                args "-c" "claude"
+            }
+            pane split_direction="horizontal" {
+                pane {
+                    name "shell"
+                    cwd "/home/roger/.tbr_gm"
+                }
+                pane {
+                    name "logs"
+                    cwd "/home/roger/.tbr_gm"
+                    command "bash"
+                    args "-c" "tail -f /home/roger/.tbr_gm/ingest.log"
+                }
+            }
+        }
+    }
+    tab name="POPS" {
+        pane split_direction="vertical" {
+            pane size="65%" {
+                name "claude"
+                cwd "/home/roger/pops"
+                command "bash"
+                args "-c" "claude"
+            }
+            pane split_direction="horizontal" {
+                pane {
+                    name "shell"
+                    cwd "/home/roger/pops"
+                }
+                pane {
+                    name "app · logs"
+                    cwd "/home/roger/pops"
+                    command "bash"
+                    args "-c" "POPS_NATIVE=0 venv/bin/python app.py"
+                }
+            }
+        }
+    }
+}

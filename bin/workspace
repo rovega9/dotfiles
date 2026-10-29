@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# One-click workspace: kitty -> zellij session "work" with TBR GM + POPS tabs.
+# Live session: reattach (nothing restarts). Missing/exited: rebuild fresh from layout.
+SESSION="work"
+ZELLIJ="$HOME/.local/bin/zellij"
+
+state="$("$ZELLIJ" list-sessions --no-formatting 2>/dev/null | awk -v s="$SESSION" '$1==s')"
+
+if [[ -n "$state" && "$state" != *EXITED* ]]; then
+    cmd=("$ZELLIJ" attach "$SESSION")
+else
+    [[ -n "$state" ]] && "$ZELLIJ" delete-session "$SESSION" >/dev/null 2>&1
+    cmd=("$ZELLIJ" --session "$SESSION" --new-session-with-layout workspace)
+fi
+
+# Already inside a terminal (e.g. typed `workspace`): run here. Otherwise open kitty.
+if [[ -t 1 && -z "$ZELLIJ_SESSION_NAME" ]]; then
+    exec "${cmd[@]}"
+else
+    exec kitty --title "Workspace" --start-as=maximized "${cmd[@]}"
+fi
