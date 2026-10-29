@@ -27,12 +27,4 @@ if command -v xfconf-query >/dev/null; then
     echo "  bound Super+W to workspace"
 fi
 
-# Wire custom bash additions into .bashrc if not already present
-if ! grep -q "dotfiles/.bashrc.d/custom.sh" "$HOME/.bashrc"; then
-    echo "" >> "$HOME/.bashrc"
-    echo "# Dotfiles" >> "$HOME/.bashrc"
-    echo "source $DOTFILES/.bashrc.d/custom.sh" >> "$HOME/.bashrc"
-    echo "  sourced custom.sh into .bashrc"
-fi
-
 echo "Done."
